@@ -24,6 +24,44 @@ $(function () {
     }
   });
 
+  $('.main-nav li a').click(function () {
+    if ($(window).scrollTop() > $('.branch').offset().top - 60) {
+      // aboutよりしたの時
+      $('.openbtn1').toggleClass('active');
+      // $('nav').toggleClass('d-none');
+      $('nav').fadeToggle('.d-none');
+      $('body').toggleClass('noscroll');//bodyにnoscrollクラスを付与(ス クロールを固定)
+      $('.page-header button').toggleClass('color-change');
+      $('.openbtn1 span').toggleClass('color-change');
+      $('.page-header').toggleClass('black');
+      // $('body').toggleClass('body-black');
+      $('.burger-musk').fadeToggle(300);
+    } else {
+      // aboutよりうえの時
+      $('.openbtn1').toggleClass('active');
+      // $('nav').toggleClass('d-none');
+      $('nav').fadeToggle('.d-none');
+      $('body').toggleClass('noscroll');//bodyにnoscrollクラスを付与(ス クロールを固定)
+      // $('body').toggleClass('body-black');
+      $('.burger-musk').fadeToggle(300);
+    }
+  });
+
+   // スムーススクロール
+  // var headerHeight = 150;
+  var headerHeight = $('header').outerHeight();
+  $("a[href^='#']").click(function () {
+    var speed = 500;
+    var href = $(this).attr("href");
+    var target = $(href == "#" || href == "" ? "html" : href);
+    var position = target.offset().top - headerHeight;
+
+    $("html,body").animate({ scrollTop: position }, speed, "linear");
+    return false;
+  });
+
+  
+
 
 
   // headerの色を変える
